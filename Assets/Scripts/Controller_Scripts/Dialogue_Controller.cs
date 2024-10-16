@@ -18,6 +18,7 @@ public class Dialogue_Controller : MonoBehaviour
 
     [Header("Other parameters")]
     [SerializeField] private Input_Controller input;
+    [SerializeField] private UI_Controller ui;
     
     public UnityEvent dialogue_started;
     public UnityEvent dialogue_ended;
@@ -31,6 +32,8 @@ public class Dialogue_Controller : MonoBehaviour
 
     private IEnumerator DialogueRoutine(Dialogue_Asset dialogue){
         input.DisableDefault();
+        ui.DeactivateAll();
+
         text_field.text = string.Empty;
 
         dialogue_started.Invoke();
@@ -57,6 +60,7 @@ public class Dialogue_Controller : MonoBehaviour
         yield return terminate;
 
         input.EnableDefault();
+        ui.ActivateGameplay();
 
         dialogue_ended.Invoke();
     }

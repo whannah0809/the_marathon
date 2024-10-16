@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Dialogue Manager
+  - UI Manager
+  - Input Manager
   layers:
   - Default
   - TransparentFX

@@ -19,8 +19,8 @@ public class Interactable_Object : MonoBehaviour
         StartCoroutine(OnInteraction());
     }
     
-    private void OnTriggerEnter(Collider collider){
-        if(collider.gameObject.CompareTag("Player")){
+    private void OnTriggerStay(Collider collider){
+        if(collider.gameObject.CompareTag("Player") && input.QueryInteractable()){
             ui.ActivateInteractable();
             can_interact = true;
         }

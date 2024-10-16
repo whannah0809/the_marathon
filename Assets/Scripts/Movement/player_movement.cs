@@ -6,7 +6,7 @@ public class Player_Movement : MonoBehaviour
 {
     [SerializeField] float speed = 50f;
 
-    private bool can_move = true;
+    private bool can_move = false;
 
     void Update(){
         if(can_move){

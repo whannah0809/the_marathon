@@ -5,7 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Initialize : MonoBehaviour
 {
+    [SerializeField] private Scene_Controller scene_cont;
+    [SerializeField] private Material fade_material;
+
     void Awake(){
-        SceneManager.LoadScene(1);
+        fade_material.color = Color.black;
+        scene_cont.QuickChange(1);
     }
 }
