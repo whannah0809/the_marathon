@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class camera_target : MonoBehaviour
+public class Camera_Target : MonoBehaviour
 {
     void Awake(){
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
