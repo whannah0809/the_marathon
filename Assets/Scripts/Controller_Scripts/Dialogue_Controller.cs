@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 public class Dialogue_Controller : MonoBehaviour
@@ -18,6 +19,8 @@ public class Dialogue_Controller : MonoBehaviour
     [Header("Other parameters")]
     [SerializeField] private Input_Controller input;
     
+    public UnityEvent dialogue_started;
+    public UnityEvent dialogue_ended;
 
     private int cur_line = 0;
 
@@ -29,6 +32,8 @@ public class Dialogue_Controller : MonoBehaviour
     private IEnumerator DialogueRoutine(Dialogue_Asset dialogue){
         input.DisableDefault();
         text_field.text = string.Empty;
+
+        dialogue_started.Invoke();
 
         Coroutine initiate = StartCoroutine(MovePanel(target_y));
         yield return initiate;
@@ -48,8 +53,12 @@ public class Dialogue_Controller : MonoBehaviour
             cur_line++;
         }
 
-        StartCoroutine(MovePanel(-600f));
+        Coroutine terminate = StartCoroutine(MovePanel(-600f));
+        yield return terminate;
+
         input.EnableDefault();
+
+        dialogue_ended.Invoke();
     }
 
     private IEnumerator QuickEnd(Coroutine type, Dialogue_Asset dialogue){

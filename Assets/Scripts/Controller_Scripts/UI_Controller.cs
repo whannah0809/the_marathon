@@ -4,26 +4,42 @@ using UnityEngine;
 
 public class UI_Controller : MonoBehaviour
 {
-    [SerializeField] private GameObject mapUI;
-    [SerializeField] private GameObject gamePlayUI;
+    [SerializeField] private GameObject map_UI;
+    [SerializeField] private GameObject game_PlayUI;
+    [SerializeField] private GameObject interactable_UI;
+    [SerializeField] private Input_Controller input_Manager;
 
     public void ActivateMap(){
-        mapUI.SetActive(true);
-        gamePlayUI.SetActive(false);
+        map_UI.SetActive(true);
+        game_PlayUI.SetActive(false);
+        interactable_UI.SetActive(false);
+        input_Manager.DisableDefault();
     }
 
     public void DeactivateMap(){
-        mapUI.SetActive(false);
-        gamePlayUI.SetActive(true);
+        map_UI.SetActive(false);
+        game_PlayUI.SetActive(true);
+        input_Manager.DelayedEnable();
     }
 
     public void DeactivateAll(){
         Debug.Log("Deactivating all");
-        mapUI.SetActive(false);
-        gamePlayUI.SetActive(false);
+        map_UI.SetActive(false);
+        game_PlayUI.SetActive(false);
+        interactable_UI.SetActive(false);
     }
 
     public void ActivateGameplay(){
-        gamePlayUI.SetActive(true);
+        game_PlayUI.SetActive(true);
+    }
+
+    public void ActivateInteractable(){
+        if(!map_UI.active){
+            interactable_UI.SetActive(true);
+        }
+    }
+
+    public void DeactivateInteractable(){
+        interactable_UI.SetActive(false);
     }
 }
