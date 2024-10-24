@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UI_Controller : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class UI_Controller : MonoBehaviour
     [SerializeField] private GameObject game_PlayUI;
     [SerializeField] private GameObject interactable_UI;
     [SerializeField] private Input_Controller input_Manager;
+    [SerializeField] private TextMeshProUGUI interactable_affordance; 
 
     public void ActivateMap(){
         map_UI.SetActive(true);
@@ -33,13 +35,15 @@ public class UI_Controller : MonoBehaviour
         game_PlayUI.SetActive(true);
     }
 
-    public void ActivateInteractable(){
+    public void ActivateInteractable(string line){
         if(!map_UI.active){
+            interactable_affordance.text = line;
             interactable_UI.SetActive(true);
         }
     }
 
     public void DeactivateInteractable(){
         interactable_UI.SetActive(false);
+        interactable_affordance.text = string.Empty;
     }
 }

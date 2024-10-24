@@ -5,6 +5,7 @@ using UnityEngine;
 public class Interactable_Object : MonoBehaviour
 {
     [SerializeField] private float interaction_cooldown = 1f;
+    [SerializeField] private string interactable_affordance;
 
     private UI_Controller ui;
     private Input_Controller input;
@@ -19,9 +20,9 @@ public class Interactable_Object : MonoBehaviour
         StartCoroutine(OnInteraction());
     }
     
-    private void OnTriggerStay(Collider collider){
+    private void OnTriggerEnter(Collider collider){
         if(collider.gameObject.CompareTag("Player") && input.QueryInteractable()){
-            ui.ActivateInteractable();
+            ui.ActivateInteractable(interactable_affordance);
             can_interact = true;
         }
     }
@@ -54,7 +55,9 @@ public class Interactable_Object : MonoBehaviour
     private IEnumerator RestartInteractable(){
         yield return new WaitForSeconds(interaction_cooldown);
         Debug.Log("Object Interactable");
-        ui.ActivateInteractable();
+        if(input.QueryInteractable()){
+            ui.ActivateInteractable(interactable_affordance);
+        }
         interacting = false;
     }
 }

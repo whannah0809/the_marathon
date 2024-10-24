@@ -9,6 +9,9 @@ public class Initialize : MonoBehaviour
     [SerializeField] private Material fade_material;
 
     void Awake(){
+        QualitySettings.vSyncCount = 0;  // VSync must be disabled
+        Application.targetFrameRate = 45;
+        
         fade_material.color = Color.black;
         scene_cont.QuickChange(1);
     }
