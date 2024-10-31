@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactable_Object : MonoBehaviour
 {
-    [SerializeField] private float interaction_cooldown = 1f;
+    [SerializeField] private float interaction_cooldown = 0.1f;
     [SerializeField] private string interactable_affordance;
 
     private UI_Controller ui;
@@ -49,12 +49,6 @@ public class Interactable_Object : MonoBehaviour
     }
 
     public void EndInteractionEvent(){
-        StartCoroutine(RestartInteractable());
-    }
-
-    private IEnumerator RestartInteractable(){
-        yield return new WaitForSeconds(interaction_cooldown);
-        Debug.Log("Object Interactable");
         if(input.QueryInteractable()){
             ui.ActivateInteractable(interactable_affordance);
         }

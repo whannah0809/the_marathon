@@ -7,6 +7,8 @@ TagManager:
   - Dialogue Manager
   - UI Manager
   - Input Manager
+  - Player Parent
+  - Event Bone
   layers:
   - Default
   - TransparentFX
