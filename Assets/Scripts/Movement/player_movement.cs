@@ -11,7 +11,7 @@ public class Player_Movement : MonoBehaviour
     private bool can_move = false;
 
     void Start(){
-        transform.forward = transform.right;
+        //transform.forward = transform.right;
     }
 
     void Update(){

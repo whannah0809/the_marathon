@@ -31,7 +31,6 @@ public class Dialogue_Controller : MonoBehaviour
     }
 
     private IEnumerator DialogueRoutine(Dialogue_Asset dialogue){
-        input.DisableDefault();
         ui.DeactivateAll();
 
         text_field.text = string.Empty;
@@ -56,10 +55,9 @@ public class Dialogue_Controller : MonoBehaviour
             cur_line++;
         }
 
-        Coroutine terminate = StartCoroutine(MovePanel(-600f));
+        Coroutine terminate = StartCoroutine(MovePanel(-750f));
         yield return terminate;
 
-        input.EnableDefault();
         ui.ActivateGameplay();
 
         dialogue_ended.Invoke();
