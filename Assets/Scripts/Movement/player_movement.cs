@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Player_Movement : MonoBehaviour
 {
-    [SerializeField] float speed = 5;
-    [SerializeField] float rotation_speed = 1f;
+    [SerializeField] public float speed = 5;
+    [SerializeField] public float rotation_speed = 1f;
     [SerializeField] Transform player_parent;
+    [SerializeField] Animator anim;
 
     private bool can_move = false;
 
@@ -17,6 +18,13 @@ public class Player_Movement : MonoBehaviour
     void Update(){
         if(can_move){
             float input = Input.GetAxis("Horizontal");
+
+            if(input != 0){
+                anim.SetBool("Walking", true);
+            }
+            else{
+                anim.SetBool("Walking", false);
+            }
 
             Vector3 movement = new Vector3(speed * input, 0, 0);
             movement *= Time.deltaTime;

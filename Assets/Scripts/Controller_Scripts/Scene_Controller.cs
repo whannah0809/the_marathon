@@ -46,10 +46,11 @@ public class Scene_Controller : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         Coroutine fade_from_black = StartCoroutine(fade.FadeFromBlack());
+        bone.CallSceneEvent(MPID);
         yield return fade_from_black;
 
         ui.ActivateGameplay();
-        input.EnableDefault();
+        //input.EnableDefault();
         yield return null;
     }
 }
