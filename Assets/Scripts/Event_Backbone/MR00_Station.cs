@@ -15,6 +15,9 @@ public class MR00_Station : Scene_Event
     [SerializeField] Player2_Movement player2_move;
     [SerializeField] Animator player2_anim;
 
+    [Header("Dialogue")]
+    [SerializeField] Dialogue_Asset forgot_map;
+
     private Input_Controller input;
     private Dialogue_Controller dialogue;
 
@@ -30,13 +33,15 @@ public class MR00_Station : Scene_Event
 
         player2_anim.SetBool("Left", true);
 
-        yield return new WaitForSeconds(3);
-
+        dialogue.StartDialogue(forgot_map);
+        dialogue.dialogue_ended.AddListener(EventHandler);
+        yield return StartCoroutine(WaitForDialogueEnd());
+        
+        player2_move.enabled = true;
         player2_anim.SetBool("Left", false);
 
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(0.5f);
 
         input.EnableDefault();
-        player2_move.enabled = true;
     }
 }

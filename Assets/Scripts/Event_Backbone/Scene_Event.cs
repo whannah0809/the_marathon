@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Scene_Event : MonoBehaviour
 {
+    private bool dialogue_continue;
+
     public abstract IEnumerator ExecuteSceneCode();
 
     public IEnumerator TranslateObject(GameObject g_object, Transform target, float speed){
@@ -22,5 +24,15 @@ public abstract class Scene_Event : MonoBehaviour
             yield return null;
         }
         g_object.transform.rotation = target_Rotation; // Ensure final rotation is accurate
+    }
+
+    public void EventHandler(){
+        dialogue_continue = true;
+    }
+
+    public IEnumerator WaitForDialogueEnd() {
+        yield return new WaitUntil(() => dialogue_continue);
+        dialogue_continue = false;
+        yield return null;
     }
 }

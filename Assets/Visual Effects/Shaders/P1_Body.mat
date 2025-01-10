@@ -63,7 +63,7 @@ Material:
     - _Color: {r: 0.94499445, g: 1.2167859, b: 0.88848335, a: 0}
     - _Emission_Colour: {r: 0.8740443, g: 1, b: 0.56037736, a: 0}
     - _Frensel_Colour: {r: 1, g: 1, b: 1, a: 1}
-    - _Glow_Colour: {r: 0.29106444, g: 0.5283019, b: 0.2967129, a: 0}
-    - _Inner_Col: {r: 0.07407562, g: 0.13207549, b: 0.07401211, a: 0}
+    - _Glow_Colour: {r: 0.35686275, g: 0.58431375, b: 0.38609082, a: 0}
+    - _Inner_Col: {r: 0.02745098, g: 0.047058824, b: 0.03254944, a: 0}
     - _Outer_Col: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

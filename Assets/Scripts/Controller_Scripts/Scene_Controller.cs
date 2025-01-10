@@ -37,7 +37,7 @@ public class Scene_Controller : MonoBehaviour
         bone.CallSceneEvent(MPID);
         yield return fade_from_black;
 
-        ui.ActivateGameplay();
+        //ui.ActivateGameplay();
         yield return null;
     }
 
@@ -49,7 +49,7 @@ public class Scene_Controller : MonoBehaviour
         bone.CallSceneEvent(MPID);
         yield return fade_from_black;
 
-        ui.ActivateGameplay();
+        //ui.ActivateGameplay();
         //input.EnableDefault();
         yield return null;
     }

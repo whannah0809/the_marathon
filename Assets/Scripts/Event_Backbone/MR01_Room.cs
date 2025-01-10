@@ -34,17 +34,6 @@ public class MR01_Room : Scene_Event
 
     private Input_Controller input;
     private Dialogue_Controller dialogue;
-    private bool dialogue_continue;
-
-    private void EventHandler(){
-        dialogue_continue = true;
-    }
-
-    IEnumerator WaitForDialogueEnd() {
-        yield return new WaitUntil(() => dialogue_continue);
-        dialogue_continue = false;
-        yield return null;
-    }
 
     public override IEnumerator ExecuteSceneCode(){
         Debug.Log("Executing MR1");

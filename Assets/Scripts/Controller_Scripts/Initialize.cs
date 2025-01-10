@@ -10,7 +10,7 @@ public class Initialize : MonoBehaviour
 
     void Awake(){
         QualitySettings.vSyncCount = 0;  // VSync must be disabled
-        Application.targetFrameRate = 25;
+        Application.targetFrameRate = 20;
         
         fade_material.color = Color.black;
         scene_cont.QuickChange(1);

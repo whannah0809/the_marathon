@@ -30,6 +30,22 @@ public class Dialogue_Controller : MonoBehaviour
         StartCoroutine(DialogueRoutine(dialogue));
     }
 
+    private void StopLine(Dialogue_Asset dialogue){
+        StopAllCoroutines();
+
+        next_symbol.text += "▼";
+
+        StartCoroutine(HandleNext(dialogue));
+    }
+
+    private IEnumerator HandleNext(Dialogue_Asset dialogue){
+        Coroutine next = StartCoroutine(NextLine());
+        yield return next;
+
+        cur_line++;
+        StartCoroutine(InitiateLine(dialogue));
+    }
+
     private IEnumerator DialogueRoutine(Dialogue_Asset dialogue){
         ui.DeactivateAll();
 
@@ -37,30 +53,29 @@ public class Dialogue_Controller : MonoBehaviour
 
         dialogue_started.Invoke();
 
-        Coroutine initiate = StartCoroutine(MovePanel(target_y));
-        yield return initiate;
+        //Coroutine initiate = StartCoroutine(MovePanel(target_y));
+        //yield return initiate;
 
-        while(cur_line < dialogue.lines.Length){
+        StartCoroutine(InitiateLine(dialogue));
+
+        yield return null;
+    }
+
+    private IEnumerator InitiateLine(Dialogue_Asset dialogue){
+        if(cur_line < dialogue.lines.Length){
             Coroutine type = StartCoroutine(TypeLine(dialogue));
             Coroutine quick_end = StartCoroutine(QuickEnd(type, dialogue));
             yield return type;
 
-            StopCoroutine(quick_end);
+            StopLine(dialogue);
+        } else {
+            //Coroutine terminate = StartCoroutine(MovePanel(-750f));
+            //yield return terminate;
 
-            next_symbol.text += "▼";
+            ui.ActivateGameplay();
 
-            Coroutine next = StartCoroutine(NextLine());
-            yield return next;
-
-            cur_line++;
+            dialogue_ended.Invoke();
         }
-
-        Coroutine terminate = StartCoroutine(MovePanel(-750f));
-        yield return terminate;
-
-        ui.ActivateGameplay();
-
-        dialogue_ended.Invoke();
     }
 
     private IEnumerator QuickEnd(Coroutine type, Dialogue_Asset dialogue){
@@ -75,6 +90,8 @@ public class Dialogue_Controller : MonoBehaviour
         }
 
         yield return null;
+
+        StopLine(dialogue);
     }
 
     private IEnumerator NextLine(){

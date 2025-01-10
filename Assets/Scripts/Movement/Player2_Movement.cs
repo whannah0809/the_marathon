@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player2_Movement : MonoBehaviour
 {
     [SerializeField] Transform p2_target; // The target to follow
+    [SerializeField] Transform p1;
     [SerializeField] Player_Movement p_movement;
     [SerializeField] private float activation_threshold = 0.5f; // Distance to start moving
     [SerializeField] private float stopping_threshold = 0.01f; // Distance to stop moving
@@ -33,19 +34,26 @@ public class Player2_Movement : MonoBehaviour
         {
             isMoving = true;
         }
-        else(
-            //
-        )
 
         // If moving, handle movement and rotation
         if (isMoving)
         {
-            MoveTowardsTarget(distanceToTarget);
+            Debug.Log("Walking");
             anim.SetBool("Walking", true);
+            MoveTowardsTarget(distanceToTarget);
         }
         else
         {
+            RotateTowardsP1();
             anim.SetBool("Walking", false);
+        }
+    }
+
+    private void RotateTowardsP1(){
+        Vector3 target_forward = new Vector3(p1.position.x, transform.position.y, p1.position.z);
+        Vector3 target_dir = target_forward - transform.position;
+        if((transform.forward - target_dir.normalized).sqrMagnitude >= 0.0001f){
+            transform.forward = Vector3.Slerp(transform.forward, target_dir.normalized, rotation_speed * Time.deltaTime);
         }
     }
 
