@@ -37,11 +37,12 @@ public class MR00_Station : Scene_Event
         dialogue.dialogue_ended.AddListener(EventHandler);
         yield return StartCoroutine(WaitForDialogueEnd());
         
-        player2_move.enabled = true;
         player2_anim.SetBool("Left", false);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
+        player2_move.enabled = true;
 
+        yield return new WaitForSeconds(0.5f);
         input.EnableDefault();
     }
 }

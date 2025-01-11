@@ -32,13 +32,13 @@ public class Player2_Movement : MonoBehaviour
         // Check if the object should start moving
         if (!isMoving && distanceToTarget > activation_threshold)
         {
+            Debug.Log(p2_target.parent.position.x);
             isMoving = true;
         }
 
         // If moving, handle movement and rotation
-        if (isMoving)
+        if (isMoving && p2_target.parent.position.x < 36.1f)
         {
-            Debug.Log("Walking");
             anim.SetBool("Walking", true);
             MoveTowardsTarget(distanceToTarget);
         }

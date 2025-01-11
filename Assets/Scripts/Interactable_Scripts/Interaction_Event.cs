@@ -4,17 +4,35 @@ using UnityEngine;
 
 public abstract class Interaction_Event : MonoBehaviour
 {
+    private bool dialogue_continue;
+
     public abstract void InvokeEvent();
+
+    public void EventHandler(){
+        dialogue_continue = true;
+    }
+
+    public IEnumerator WaitForDialogueEnd() {
+        yield return new WaitUntil(() => dialogue_continue);
+        dialogue_continue = false;
+        yield return null;
+    }
 
     public IEnumerator LookAtObject(Transform target, float rotation_speed){
         Debug.Log("Rotate called");
 
         Transform player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
-        Vector3 target_forward = new Vector3(target.position.x, player.position.y, target.position.z);
-        Vector3 target_dir = target_forward - player.position;
-        while((player.forward - target_dir.normalized).sqrMagnitude >= 0.0001f){
-            player.forward = Vector3.Slerp(player.forward, target_dir.normalized, rotation_speed * Time.deltaTime);
+        yield return StartCoroutine(RotateTarget(player, target, rotation_speed));
+    
+        yield return null;
+    }
+
+    public IEnumerator RotateTarget(Transform to_rotate, Transform target, float rotation_speed){
+        Vector3 target_forward = new Vector3(target.position.x, to_rotate.position.y, target.position.z);
+        Vector3 target_dir = target_forward - to_rotate.position;
+        while((to_rotate.forward - target_dir.normalized).sqrMagnitude >= 0.0001f){
+            to_rotate.forward = Vector3.Slerp(to_rotate.forward, target_dir.normalized, rotation_speed * Time.deltaTime);
             yield return null;
         }
         Debug.Log("Completed rotation");

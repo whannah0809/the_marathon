@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - font_size: 0
-    line: It's a map
+    line: That's my place there on the map
   - font_size: 0
-    line: you look away and then at it again
-  - font_size: 0
-    line: It's a map
+    line: Right there!
