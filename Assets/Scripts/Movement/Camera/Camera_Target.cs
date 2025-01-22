@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
+/*
+    Function:   Sets object as the follow target for the cvc
+    Usage:      Used on player 1
+*/
 public class Camera_Target : MonoBehaviour
 {
     void Awake(){

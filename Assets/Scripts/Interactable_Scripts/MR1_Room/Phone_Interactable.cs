@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    Function:   Defines event for when player interacts with the phone
+    Usage:      Used when player interacts with the phone
+*/
 public class Phone_Interactable : Interaction_Event
 {
     [SerializeField] float rotation_speed;

@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    Function:   Moves player character based on user input
+    Usage:      Linking user input with player movement and animations
+*/
 public class Player_Movement : MonoBehaviour
 {
     [SerializeField] public float speed = 5;
@@ -10,26 +14,29 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] Transform player_parent;
     [SerializeField] Animator anim;
 
-    [SerializeField] private float minX = -10f; // Minimum boundary for x
-    [SerializeField] private float maxX = 35.2f; // Maximum boundary for x
+    [SerializeField] private float minX = -10f; 
+    [SerializeField] private float maxX = 35.2f; 
 
     private bool can_move = false;
 
+    //This script can make changes to animations
     public void GiveAnimControl()
     {
         anim_control = true;
     }
 
+    //The animation is set to idol and this script can no longer make changes to animation state
     public void TakeAnimControl()
     {
-        anim_control = false;
         anim.SetBool("Walking", false);
+        anim_control = false;
     }
 
     void Update()
     {
         if (can_move)
         {
+            //On horizontal input, set the animation state to walking
             float input = Input.GetAxis("Horizontal");
 
             if (input != 0 && anim_control)

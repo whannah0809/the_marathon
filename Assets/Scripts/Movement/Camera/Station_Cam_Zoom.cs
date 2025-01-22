@@ -1,45 +1,47 @@
 using UnityEngine;
 using Cinemachine;
 
-public class CameraZoomController : MonoBehaviour
+/*
+    Function:   Zooms camera between specific x positions on player
+    Usage:      Used for lerping camera zoom effect
+*/
+public class Station_Cam_Zoom : MonoBehaviour
 {
-    public CinemachineVirtualCamera virtualCamera; // Reference to the Cinemachine Virtual Camera
-    public Transform player;                      // Reference to the player's transform
-    public float minDistance = 5f;                // Zoomed-in distance
-    public float maxDistance = 7f;                // Default distance
-    public float startZoomX = 20f;                // Start zooming at this x position
-    public float endZoomX = 25f;                  // Fully zoomed in at this x position
+    public CinemachineVirtualCamera virtual_camera;
+    public Transform player;                      
+    public float min_distance = 5f;                
+    public float max_distance = 7f;                
+    public float start_zoom = 20f;                
+    public float end_zoom = 25f;                  
 
     void Update()
     {
-        if (virtualCamera == null || player == null) return;
+        if (virtual_camera == null || player == null) return;
 
-        // Get the player's x position
-        float playerX = player.position.x;
+        float player_x = player.position.x;
+        float target_distance;
 
-        // Determine the target camera distance based on player's x position
-        float targetDistance;
-
-        if (playerX < startZoomX)
+        //Handle edge cases
+        if (player_x < start_zoom)
         {
-            targetDistance = maxDistance; // Default distance before startZoomX
+            target_distance = max_distance;
         }
-        else if (playerX > endZoomX)
+        else if (player_x > end_zoom)
         {
-            targetDistance = minDistance; // Fully zoomed-in distance after endZoomX
+            target_distance = min_distance;
         }
+
+        //Lerp camera zoom based on player x position
         else
         {
-            // Lerp between maxDistance and minDistance based on player's x position
-            float t = (playerX - startZoomX) / (endZoomX - startZoomX);
-            targetDistance = Mathf.Lerp(maxDistance, minDistance, t);
+            float t = (player_x - start_zoom) / (end_zoom - start_zoom);
+            target_distance = Mathf.Lerp(max_distance, min_distance, t);
         }
 
-        // Update the camera's distance
-        var component = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+        var component = virtual_camera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
         if (component != null)
         {
-            component.CameraDistance = targetDistance;
+            component.CameraDistance = target_distance;
         }
     }
 }

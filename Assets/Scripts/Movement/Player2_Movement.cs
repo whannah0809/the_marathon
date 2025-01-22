@@ -2,25 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    Function:   Moves player 2 character based on player 1 position
+    Usage:      Move player 2 in the station scene
+*/
 public class Player2_Movement : MonoBehaviour
 {
-    [SerializeField] Transform p2_target; // The target to follow
+    [SerializeField] Transform p2_target; 
     [SerializeField] Transform p1;
     [SerializeField] Player_Movement p_movement;
-    [SerializeField] private float activation_threshold = 0.5f; // Distance to start moving
-    [SerializeField] private float stopping_threshold = 0.01f; // Distance to stop moving
-    [SerializeField] private float acceleration = 2f; // Speed increase per second
-    [SerializeField] private float slowSpeedFactor = 0.3f; // Fraction of max speed when close to the target
+    
+    [Header("Movement settings")]
+    [SerializeField] private float activation_threshold = 0.5f; 
+    [SerializeField] private float stopping_threshold = 0.01f;
+    [SerializeField] private float acceleration = 2f; 
+    [SerializeField] private float slowSpeedFactor = 0.3f;
 
     [SerializeField] private Animator anim;
 
-    private float move_speed; // Maximum speed
-    private float rotation_speed; // Rotation speed
-    private bool isMoving = false; // Movement state
-    private float currentSpeed = 0f; // Current movement speed
+    private float move_speed; 
+    private float rotation_speed; 
+    private bool isMoving = false; 
+    private float currentSpeed = 0f; 
 
     void Start()
     {
+        //Set the movement and rotation speed to same as player 1
         move_speed = p_movement.speed;
         rotation_speed = p_movement.rotation_speed;
     }
@@ -36,7 +43,7 @@ public class Player2_Movement : MonoBehaviour
             isMoving = true;
         }
 
-        // If moving, handle movement and rotation
+        // If moving, handle movement and rotation. Update animation states
         if (isMoving && p2_target.parent.position.x < 36.1f)
         {
             anim.SetBool("Walking", true);
@@ -61,22 +68,20 @@ public class Player2_Movement : MonoBehaviour
     {
         if (distanceToTarget > stopping_threshold)
         {
-            // Determine the target speed based on proximity to the target
+            //Determine the target speed based on proximity to the target
             float targetSpeed = move_speed;
             if (distanceToTarget < activation_threshold)
             {
-                // Reduce speed linearly as the object approaches the stopping threshold
+                //Reduce speed linearly as the object approaches the stopping threshold
                 float normalizedDistance = Mathf.Clamp01((distanceToTarget - stopping_threshold) / (activation_threshold - stopping_threshold));
                 targetSpeed = Mathf.Lerp(move_speed * slowSpeedFactor, move_speed, normalizedDistance);
             }
 
-            // Smoothly adjust current speed towards target speed
+            //Adjust current speed towards target speed
             currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, acceleration * Time.deltaTime);
 
-            // Calculate the movement direction
-            Vector3 direction = (p2_target.position - transform.position).normalized;
-
             // Rotate the forward vector using Slerp
+            Vector3 direction = (p2_target.position - transform.position).normalized;
             if (direction.sqrMagnitude > 0.01f)
             {
                 Vector3 newForward = Vector3.Slerp(transform.forward, direction, rotation_speed * Time.deltaTime);
@@ -90,7 +95,7 @@ public class Player2_Movement : MonoBehaviour
         {
             // Stop moving if close enough
             isMoving = false;
-            currentSpeed = 0f; // Reset speed
+            currentSpeed = 0f;
         }
     }
 }

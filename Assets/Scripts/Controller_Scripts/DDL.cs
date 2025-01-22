@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DDL : MonoBehaviour
 {
-    //presistent manangers carried on to other scenes
+    //For presistent manangers carried on to other scenes
     void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
