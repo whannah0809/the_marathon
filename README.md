@@ -21,7 +21,7 @@ The project currently uses **5 controller scripts** that are persistent through 
 - **UI**: Controls the user interface.
 - **Input**: Handles user input.
 
-![Code Structure](Images/ReadmeImage.png.png)
+![Code Structure](Images/ReadmeImage.png)
 
 When a game scene is loaded via the **Scene Controller**, the **Event Backbone** finds the event bone object in the scene and calls on the scene event script attached to it in order to execute the scene sequence. This scene sequence can include:
 
