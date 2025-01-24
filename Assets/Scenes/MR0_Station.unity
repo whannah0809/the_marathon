@@ -1314,12 +1314,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be157da009ddc7445ba779383fc57b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 412495856}
+  virtual_camera: {fileID: 412495856}
   player: {fileID: 1001279015}
-  minDistance: 5
-  maxDistance: 7.5
-  startZoomX: 30
-  endZoomX: 33
+  min_distance: 5
+  max_distance: 7
+  start_zoom: 30
+  end_zoom: 33
 --- !u!1 &467577729
 GameObject:
   m_ObjectHideFlags: 0
@@ -3355,7 +3355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f5e17ef36b73940ad7cad829351d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interaction_cooldown: 1
   interactable_affordance: Look at map
 --- !u!1001 &1088584048
 PrefabInstance:
@@ -6507,7 +6506,7 @@ MonoBehaviour:
   train_move_speed: 30
   player2_move: {fileID: 1257876992}
   player2_anim: {fileID: 1257876993}
-  forgot_map: {fileID: 11400000, guid: 830730f1d6e27e24ab64a91b62d77fdb, type: 2}
+  forgot_list: {fileID: 11400000, guid: 830730f1d6e27e24ab64a91b62d77fdb, type: 2}
 --- !u!4 &1561599224
 Transform:
   m_ObjectHideFlags: 0

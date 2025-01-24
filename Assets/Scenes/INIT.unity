@@ -520,7 +520,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 562573406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89d9d5455aa09484dbeaf982fde63c1c, type: 3}
+  m_Script: {fileID: 11500000, guid: dd8772c97db6d9b438942722c71d02e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &849290505
@@ -1508,13 +1508,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55dda4f65d3b8d24581155307b636bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue_panel: {fileID: 0}
-  translate_speed: 0.4
-  target_y: -300
   text_speed: 0.03
   text_field: {fileID: 212870643}
   next_symbol: {fileID: 1295808770}
-  input: {fileID: 215500146}
   ui: {fileID: 2030143843}
   dialogue_started:
     m_PersistentCalls:
