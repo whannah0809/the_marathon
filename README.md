@@ -1,3 +1,5 @@
+![Game Preview](./Images/Photo1.png)
+
 ## Project Structure
 Check the **Blender Files** folder in the root directory for Blender models used in the game. The FBX files for the models that are actually used in the project are located in `Assets -> Prefabs -> Models`.
 
