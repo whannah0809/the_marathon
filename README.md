@@ -1,4 +1,4 @@
-# Game Developed in Unity
+# Personal Unity Game Project
 
 ![Game Preview](./Images/Photo1.png)
 
